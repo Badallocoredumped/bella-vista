@@ -1,0 +1,111 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, #2c2c2c 100%);
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-text {
+  max-width: 600px;
+  padding: 0 20px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-white);
+}
+
+.hero-text h1 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=1080&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(26, 26, 26, 0.8) 0%,
+    rgba(212, 175, 55, 0.1) 50%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hero-text {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hero {
+    height: 90vh;
+    padding-top: 80px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+  }
+}
