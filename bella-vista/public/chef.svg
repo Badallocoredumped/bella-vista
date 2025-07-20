@@ -1,0 +1,20 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chef hat -->
+  <path d="M8 15C8 11.6863 10.6863 9 14 9H18C21.3137 9 24 11.6863 24 15V18H8V15Z" fill="#F8F8F8"/>
+  <circle cx="12" cy="7" r="2" fill="#F8F8F8"/>
+  <circle cx="16" cy="5" r="2.5" fill="#F8F8F8"/>
+  <circle cx="20" cy="7" r="2" fill="#F8F8F8"/>
+  
+  <!-- Chef hat band -->
+  <rect x="8" y="18" width="16" height="3" fill="#D4AF37"/>
+  
+  <!-- Face -->
+  <ellipse cx="16" cy="25" rx="6" ry="5" fill="#FDBCB4"/>
+  
+  <!-- Eyes -->
+  <circle cx="14" cy="23" r="0.8" fill="#2C2C2C"/>
+  <circle cx="18" cy="23" r="0.8" fill="#2C2C2C"/>
+  
+  <!-- Mustache -->
+  <path d="M13 26.5C14 27 15 27 16 26.8C17 27 18 27 19 26.5" stroke="#8B4513" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

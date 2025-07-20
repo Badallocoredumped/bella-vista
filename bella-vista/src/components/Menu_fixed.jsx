@@ -26,21 +26,24 @@ const Menu = () => {
   }
 
   const categories = [
-    { id: 'appetizers', name: 'Appetizers', icon: '🥗' },
-    { id: 'mains', name: 'Main Courses', icon: '🥩' },
-    { id: 'desserts', name: 'Desserts', icon: '🍰' }
+    { id: 'appetizers', name: 'Appetizers' },
+    { id: 'mains', name: 'Main Courses' },
+    { id: 'desserts', name: 'Desserts' }
   ]
 
   useEffect(() => {
     setAnimatingItems(true)
-    const timer = setTimeout(() => setAnimatingItems(false), 600)
+    const timer = setTimeout(() => {
+      setAnimatingItems(false)
+    }, 100)
     return () => clearTimeout(timer)
   }, [activeCategory])
 
   const sectionStyle = {
     padding: '100px 0',
     background: 'linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%)',
-    position: 'relative'
+    position: 'relative',
+    overflow: 'hidden'
   }
 
   const containerStyle = {
@@ -132,17 +135,7 @@ const Menu = () => {
     transitionDelay: `${index * 0.12}s`,
     cursor: 'pointer',
     boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(212, 175, 55, 0.1)',
-    outline: 'none',
-    '&::before': {
-      content: '""',
-      position: 'absolute',
-      top: 0,
-      left: '-100%',
-      width: '100%',
-      height: '100%',
-      background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent)',
-      transition: 'left 0.6s ease'
-    }
+    outline: 'none'
   })
 
   const itemInfoStyle = {
@@ -295,35 +288,21 @@ const Menu = () => {
       </div>
       
       <style>{`
-        /* Remove all outlines from interactive elements */
-        .category-btn,
-        .menu-item,
-        .menu-item *,
-        button,
-        div[role="button"],
-        .category-buttons button,
-        .category-buttons div {
+        /* Remove default focus outlines */
+        button:focus,
+        div:focus,
+        *:focus {
           outline: none !important;
-          box-shadow: none !important;
-          border: none !important;
         }
         
-        .category-btn:focus,
-        .category-btn:active,
-        .category-btn:focus-visible,
-        .menu-item:focus,
-        .menu-item:active,
-        .menu-item:focus-visible,
-        button:focus,
-        button:active,
+        /* Custom focus styles for accessibility */
         button:focus-visible {
-          outline: none !important;
-          box-shadow: none !important;
-          border: none !important;
+          outline: 2px solid rgba(212, 175, 55, 0.5) !important;
+          outline-offset: 2px !important;
         }
         
         @media (max-width: 768px) {
-          .menu-item {
+          .menu-categories {
             flex-direction: column !important;
             gap: 1rem !important;
             text-align: center !important;
