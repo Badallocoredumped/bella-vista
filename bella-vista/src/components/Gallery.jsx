@@ -6,12 +6,12 @@ const Gallery = () => {
   const galleryRef = useRef(null)
 
   const images = [
-    { src: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=500&fit=crop", alt: "Signature dish presentation", category: "food" },
-    { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop", alt: "Restaurant interior", category: "interior" },
-    { src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop", alt: "Chef preparing meal", category: "kitchen" },
-    { src: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=500&fit=crop", alt: "Wine selection", category: "drinks" },
-    { src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop", alt: "Outdoor dining area", category: "interior" },
-    { src: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&h=400&fit=crop", alt: "Dessert presentation", category: "food" }
+    { src: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=500&fit=crop", alt: "Signature dish presentation" },
+    { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop", alt: "Restaurant interior" },
+    { src: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=500&fit=crop", alt: "Wine selection" },
+    { src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop", alt: "Outdoor dining area" },
+    { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=500&fit=crop", alt: "Fine dining experience" },
+    { src: "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=400&fit=crop", alt: "Gourmet pizza" }
   ]
 
   useEffect(() => {
@@ -66,7 +66,16 @@ const Gallery = () => {
   const subtitleStyle = {
     fontSize: '1.1rem',
     color: '#666',
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    marginBottom: '3rem'
+  }
+
+  const filterStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1rem',
+    marginBottom: '3rem',
+    flexWrap: 'wrap'
   }
 
   const gridStyle = {
@@ -79,30 +88,31 @@ const Gallery = () => {
   const getItemStyle = (index, isVisible, isHovered) => ({
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: '15px',
+    borderRadius: '20px',
     aspectRatio: '4/3',
     cursor: 'pointer',
     transform: isVisible 
       ? isHovered 
-        ? 'translateY(-15px) scale(1.03)' 
+        ? 'translateY(-15px) scale(1.05) rotate(2deg)' 
         : 'translateY(0) scale(1)'
-      : 'translateY(50px) scale(0.8)',
+      : 'translateY(50px) scale(0.9)',
     opacity: isVisible ? 1 : 0,
-    transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-    transitionDelay: isVisible ? `${index * 0.1}s` : '0s',
+    transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    transitionDelay: isVisible ? `${index * 0.15}s` : '0s',
     boxShadow: isHovered 
-      ? '0 25px 50px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.3)'
-      : '0 10px 30px rgba(0, 0, 0, 0.1)',
-    background: 'linear-gradient(45deg, #ffffff, #f8f8f8)'
+      ? '0 30px 60px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+      : '0 15px 35px rgba(0, 0, 0, 0.1)',
+    background: 'linear-gradient(135deg, #ffffff, #f8f8f8)',
+    filter: isHovered ? 'brightness(1.05)' : 'brightness(1)'
   })
 
   const imageStyle = (isHovered) => ({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-    transform: isHovered ? 'scale(1.1) rotate(1deg)' : 'scale(1)',
-    filter: isHovered ? 'brightness(0.8) contrast(1.1)' : 'brightness(1)'
+    transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    transform: isHovered ? 'scale(1.2) rotate(3deg)' : 'scale(1.1)',
+    filter: isHovered ? 'brightness(0.85) contrast(1.15) saturate(1.2)' : 'brightness(1)'
   })
 
   const overlayStyle = (isHovered) => ({
@@ -112,41 +122,41 @@ const Gallery = () => {
     right: 0,
     bottom: 0,
     background: isHovered 
-      ? 'linear-gradient(45deg, rgba(212, 175, 55, 0.9), rgba(26, 26, 26, 0.8))'
-      : 'linear-gradient(45deg, transparent, transparent)',
+      ? 'linear-gradient(45deg, rgba(212, 175, 55, 0.8), rgba(26, 26, 26, 0.6))'
+      : 'linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.1))',
+    opacity: isHovered ? 1 : 0,
+    transition: 'all 0.4s ease',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    opacity: isHovered ? 1 : 0,
-    transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-    backdropFilter: isHovered ? 'blur(5px)' : 'blur(0px)'
+    justifyContent: 'center'
   })
 
-  const overlayTextStyle = (isHovered) => ({
+  const overlayTextStyle = {
     color: '#ffffff',
+    fontFamily: "'Playfair Display', serif",
     fontSize: '1.4rem',
     fontWeight: '600',
-    letterSpacing: '2px',
-    textTransform: 'uppercase',
-    transform: isHovered ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.8)',
-    transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    textAlign: 'center',
+    transform: 'translateY(20px)',
+    transition: 'transform 0.4s ease 0.1s',
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
-  })
+  }
 
-  const backgroundDecorationStyle = {
+  const decorativeElementStyle = {
     position: 'absolute',
     top: '10%',
-    right: '-10%',
-    width: '40%',
-    height: '40%',
+    right: '5%',
+    width: '100px',
+    height: '100px',
     background: 'linear-gradient(45deg, rgba(212, 175, 55, 0.1), transparent)',
     borderRadius: '50%',
-    animation: 'float 8s ease-in-out infinite'
+    animation: 'galleryFloat 8s ease-in-out infinite',
+    zIndex: 1
   }
 
   return (
     <section id="gallery" style={sectionStyle}>
-      <div style={backgroundDecorationStyle}></div>
+      <div style={decorativeElementStyle}></div>
       <div style={containerStyle}>
         <div style={headerStyle}>
           <h2 style={titleStyle}>Gallery</h2>
@@ -173,8 +183,11 @@ const Gallery = () => {
                   style={imageStyle(isHovered)}
                 />
                 <div style={overlayStyle(isHovered)}>
-                  <span style={overlayTextStyle(isHovered)}>
-                    View
+                  <span style={{
+                    ...overlayTextStyle,
+                    transform: isHovered ? 'translateY(0)' : 'translateY(20px)'
+                  }}>
+                    {image.alt}
                   </span>
                 </div>
               </div>
@@ -184,9 +197,9 @@ const Gallery = () => {
       </div>
       
       <style>{`
-        @keyframes float {
+        @keyframes galleryFloat {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
+          50% { transform: translateY(-15px) rotate(3deg); }
         }
         
         @media (max-width: 768px) {
