@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Docker
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# macOS
+.DS_Store

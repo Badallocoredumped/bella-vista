@@ -8,7 +8,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = config.SECRET_KEY
 
 # Enable CORS (for Vite frontend)
-CORS(app, origins=["http://localhost", "http://localhost:5173"])
+# Temporary - more permissive CORS for debugging
+CORS(app, origins="*")
 
 # MongoDB connection
 client = MongoClient(config.MONGO_URI)
@@ -20,4 +21,3 @@ app.register_blueprint(reservations_bp, url_prefix="/api/reservations")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-

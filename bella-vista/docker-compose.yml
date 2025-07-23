@@ -6,24 +6,18 @@ services:
       - "5000:5000"
     env_file:
       - ./backend/.env
-    depends_on:
-      - mongo
+    # Remove depends_on mongo since we're using cloud MongoDB
+    # Remove the environment override - let it use the .env file
 
   frontend:
     build: ./frontend
     ports:
       - "80:80"
     environment:
-      - VITE_API_BASE_URL=http://backend:5000/api
+      - VITE_API_BASE_URL=http://localhost:5000/api
     depends_on:
       - backend
 
-  mongo:
-    image: mongo:5
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo_data:/data/db
+  # Remove the entire mongo service since you're using MongoDB Atlas
 
-volumes:
-  mongo_data:
+# Remove mongo_data volume since we don't need it

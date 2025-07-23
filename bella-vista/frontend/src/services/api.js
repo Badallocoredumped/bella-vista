@@ -10,8 +10,8 @@ export const createReservation = async (reservationData) => {
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.errors.join(", "));
+    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+    throw new Error(errorData.error || errorData.errors?.join(", ") || "Failed to create reservation");
   }
 
   return response.json();
