@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { createReservation } from '../services/api'; // Import the API service
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,23 +10,46 @@ const Contact = () => {
     time: '',
     guests: '',
     message: ''
-  })
+  });
   
-  const [focusedField, setFocusedField] = useState(null)
-  const [hoveredCard, setHoveredCard] = useState(null)
+  const [focusedField, setFocusedField] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [name]: name === 'guests' ? parseInt(value, 10) : value // Parse guests as a number
+    });
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Reservation submitted:', formData)
-    // Handle form submission with animation
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    console.log('Form Data:', formData); // Log the form data
+
+    try {
+      await createReservation(formData); // Send data to the backend
+      setSuccessMessage('Reservation successfully created!');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        guests: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error:', error); // Log the error
+      setErrorMessage('Failed to create reservation. Please try again.');
+    }
+  };
 
   const sectionStyle = {
     padding: '100px 0',
@@ -321,6 +345,8 @@ const Contact = () => {
             >
               Reserve Table
             </button>
+            {successMessage && <p style={{ color: 'green', marginTop: '1rem' }}>{successMessage}</p>}
+            {errorMessage && <p style={{ color: 'red', marginTop: '1rem' }}>{errorMessage}</p>}
           </form>
         </div>
       </div>
