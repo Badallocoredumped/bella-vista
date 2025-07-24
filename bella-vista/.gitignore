@@ -22,7 +22,8 @@ frontend/.env
 .env.development
 frontend/.env.development
 backend/.env.development
-
+*.development
+frontend\.env.development
 
 # IDE/editor files
 .vscode/
