@@ -19,6 +19,10 @@ backend/.env
 frontend/.env
 .env.local
 .env.production
+.env.development
+frontend/.env.development
+backend/.env.development
+
 
 # IDE/editor files
 .vscode/
