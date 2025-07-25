@@ -11,16 +11,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 
-
-import './App.css'
+import './index.css'
 
 
 
 function HomePage() 
 {
   return (
-    <div className="app">
-
+    <div className="min-h-screen bg-white">
       <Header />
       <Hero />
       <About />
@@ -28,7 +26,6 @@ function HomePage()
       <Gallery />
       <Contact />
       <Footer />
-
     </div>
   )
 }
