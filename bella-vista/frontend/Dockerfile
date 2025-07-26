@@ -4,6 +4,10 @@ FROM node:18-alpine as build
 # Set working directory
 WORKDIR /app
 
+# Add build argument and convert it to environment variable
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+
 # Copy package files
 COPY package*.json ./
 
